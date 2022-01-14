@@ -12,6 +12,7 @@ REMOTE_FORWARDING=$(jq --raw-output ".remote_forwarding[]" $CONFIG_PATH)
 
 OTHER_SSH_OPTIONS=$(jq --raw-output ".other_ssh_options" $CONFIG_PATH)
 FORCE_GENERATION=$(jq --raw-output ".force_keygen" $CONFIG_PATH)
+PEM_FILE=$(jq --raw-output ".pemfile" $CONFIG_PATH)
 
 #
 
@@ -21,7 +22,10 @@ if [ "$FORCE_GENERATION" != "false" ]; then
   rm -rf "$KEY_PATH"
 fi
 
-if [ ! -d "$KEY_PATH" ]; then
+if [ "$PEM_FILE" != "" ]; then
+  echo $PEM_FILE > "${KEY_PATH}/autossh_rsa_key"
+  ssh-keygen -y -f "${KEY_PATH}/autossh_rsa_key" > "${KEY_PATH}/autossh_rsa_key.pub"
+elif [ ! -d "$KEY_PATH" ]; then
   bashio::log.info "No previous key pair found"
   mkdir -p "$KEY_PATH"
   ssh-keygen -b 4096 -t rsa -N "" -C "hassio-setup-via-autossh" -f "${KEY_PATH}/autossh_rsa_key"
