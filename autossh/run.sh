@@ -12,7 +12,7 @@ REMOTE_FORWARDING=$(jq --raw-output ".remote_forwarding[]" $CONFIG_PATH)
 
 OTHER_SSH_OPTIONS=$(jq --raw-output ".other_ssh_options" $CONFIG_PATH)
 FORCE_GENERATION=$(jq --raw-output ".force_keygen" $CONFIG_PATH)
-PEM_FILE=$(jq -r ".pem_file" $CONFIG_PATH)
+PEM_FILE=$(bashio::config 'pem_file')
 
 #
 
