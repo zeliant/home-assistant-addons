@@ -26,8 +26,8 @@ if [ "$PEM_FILE" != "" ]; then
   if [ ! -d "$KEY_PATH" ]; then
     mkdir -p "$KEY_PATH"
   fi
-  bashio::log.info "$PEM_FILE"
   echo $PEM_FILE > "${KEY_PATH}/autossh_rsa_key"
+  chmod 400 "${KEY_PATH}/autossh_rsa_key"
   bashio::log.info "${KEY_PATH}/autossh_rsa_key"
   ssh-keygen -y -f "${KEY_PATH}/autossh_rsa_key" > "${KEY_PATH}/autossh_rsa_key.pub"
 elif [ ! -d "$KEY_PATH" ]; then
