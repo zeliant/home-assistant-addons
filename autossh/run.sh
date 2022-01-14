@@ -29,6 +29,7 @@ if [ "$PEM_FILE" != "" ]; then
   echo $PEM_FILE > "${KEY_PATH}/autossh_rsa_key"
   chmod 400 "${KEY_PATH}/autossh_rsa_key"
   cat "${KEY_PATH}/autossh_rsa_key"
+  cat $CONFIG_PATH
   ssh-keygen -y -f "${KEY_PATH}/autossh_rsa_key" > "${KEY_PATH}/autossh_rsa_key.pub"
 elif [ ! -d "$KEY_PATH" ]; then
   bashio::log.info "No previous key pair found"
