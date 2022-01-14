@@ -71,3 +71,7 @@ This is optional and for testing purposes a verbose output enabled by `-v` can b
 A key pair is generated when the container is first initialized in your environment.
 Set this to `true` if you even need to urge to regenerate a key.
 
+### Option: `pem_file`
+
+Provide a private key in PEM format instead of generating it.
+Paste the PEM file content here.
