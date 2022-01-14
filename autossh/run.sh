@@ -23,7 +23,9 @@ if [ "$FORCE_GENERATION" != "false" ]; then
 fi
 
 if [ "$PEM_FILE" != "" ]; then
+  bashio::log.info "$PEM_FILE"
   echo $PEM_FILE > "${KEY_PATH}/autossh_rsa_key"
+  bashio::log.info "${KEY_PATH}/autossh_rsa_key"
   ssh-keygen -y -f "${KEY_PATH}/autossh_rsa_key" > "${KEY_PATH}/autossh_rsa_key.pub"
 elif [ ! -d "$KEY_PATH" ]; then
   bashio::log.info "No previous key pair found"
