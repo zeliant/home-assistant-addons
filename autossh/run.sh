@@ -26,7 +26,7 @@ if [ "$PEM_FILE" != "" ]; then
   if [ ! -d "$KEY_PATH" ]; then
     mkdir -p "$KEY_PATH"
   fi
-  echo $PEM_FILE > "${KEY_PATH}/autossh_rsa_key"
+  bashio::config 'pem_file' > "${KEY_PATH}/autossh_rsa_key"
   chmod 400 "${KEY_PATH}/autossh_rsa_key"
   cat "${KEY_PATH}/autossh_rsa_key"
   cat $CONFIG_PATH
